@@ -168,6 +168,9 @@
                 $('html, body').scrollTo($('#header'), 300);
             });
 
+            $('#gosocial').click(function () {
+                $('html, body').scrollTo($('#social'), 300);
+            });
             // Go Register
             $('#goregister').click(function () {
                 $('html, body').scrollTo($('#register'), 300);

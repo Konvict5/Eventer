@@ -28,7 +28,7 @@ p,li{
 }
 
 input[type='submit'], .nav li.current a, .speaker-contacts > .contact:hover, 
-.social-icons li a:hover, .form-notification, .table-price, .gotop:hover, 
+.social-icons li a:hover, .form-notification, .table-price, .gotop:hover, .gosocial:hover, 
 .preloader div, .owl-btn.prev:hover, .owl-btn.next:hover,
 .flex-control-paging li a.flex-active, .flex-control-paging li a.flex-active:hover, 
 .owl-page.active span, .owl-page.active span:hover,
@@ -44,7 +44,7 @@ a, .accordion-heading span, .speaker-contacts > .contact,
   color: #C83A66; }
 
 .speaker:hover .speaker-photo, .speaker-contacts > .contact, 
-.social-icons li a:hover, .gotop:hover, .speaker-contacts > .contact:hover {
+.social-icons li a:hover, .gotop:hover, .gosocial:hover,  .speaker-contacts > .contact:hover {
   border-color: rgba(79, 218, 224, 0.47); 
 }
 h2.heading{
@@ -1028,13 +1028,25 @@ strong {
 }
 .pricing-table .plan ul.details li {
   border-bottom: 1px solid #B3B9C4;
-  padding: 15px;
+  padding: 18px;
 }
-.pricing-table .plan h5.order {
-  padding: 30px;
+.pricing-table .plan button.order {
+  padding: 10px;
   font-size: 17px;
+  margin: 20px;
 }
-.pricing-table .plan h5.order a {
+.pricing-table .plan button.order a {
+  text-decoration: none;
+  color: #000;
+  background-color: #5BB8AD;
+  padding: 10px 20px;
+}
+.pricing-table .plan button.orderg {
+  padding: 10px;
+  font-size: 17px;
+  margin: 25px;
+}
+.pricing-table .plan button.orderg a {
   text-decoration: none;
   color: #000;
   background-color: #5BB8AD;
@@ -1244,8 +1256,26 @@ div.gotop {
   text-align: center;
   cursor: pointer;
 }
-
+div.gosocial {
+  position: absolute;
+  bottom: -35px;
+  left: 50%;
+  width: 7rem;
+  height: 7rem;
+  margin-left: -35px;
+  background: #ffffff;
+  border-radius: 50%;
+  border: 3px solid #efefef;
+  font-size: 2.2rem;
+  line-height: 6.4rem;
+  color: #BBBAC0;
+  text-align: center;
+  cursor: pointer;
+}
 .gotop:hover {
+  color: black;
+}
+.gosocial:hover {
   color: black;
 }
 
@@ -1423,7 +1453,7 @@ font-weight: bold;
     background: rgba(255, 255, 255, 0.11);
 }
 .form-group input,.form-group textarea {
-    color: #FFF;
+    color: #000;
 }
 
 /*Social media links*/
@@ -1472,12 +1502,5 @@ font-weight: bold;
 .google-plus{
   background-image: url(../images/google-plus.png);
 }
-.linkedin{
-  background-image: url(../images/linkedin.png);
-}
-.wordpress{
-  background-image: url(../images/wordpress.png);
-}
-
 
 
