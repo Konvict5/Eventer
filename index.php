@@ -9,7 +9,7 @@
 
         <!--== CSS Files ==-->
         <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
         <link href="css/order.css" rel="stylesheet">
         <link href="css/bootstrap.css" rel="stylesheet" media="screen">
         <link href="css/style.css" rel="stylesheet" media="screen">
@@ -19,17 +19,15 @@
         <link href="css/fancySelect.css" rel="stylesheet" media="screen">
         <link href="css/responsive.css" rel="stylesheet" media="screen">
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-                <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js" type="text/javascript"></script>
-                <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js" type="text/javascript"></script>
-                <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js" type="text/javascript"></script>
-                <script src="http://s.codepen.io/assets/libs/modernizr.js" type="text/javascript"></script>
-                <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.5.3/js/bootstrapValidator.js" type="text/javascript"></script>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js" type="text/javascript"></script>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js" type="text/javascript"></script>
+        <script src="http://s.codepen.io/assets/libs/modernizr.js" type="text/javascript"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.5.3/js/bootstrapValidator.js" type="text/javascript"></script>
         <!--== Google Fonts ==-->
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
         <link href='http://fonts.googleapis.com/css?family=Belgrano' rel='stylesheet' type='text/css'>
         <link href='http://fonts.googleapis.com/css?family=Dosis' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
-
+        <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
     </head>
     <body>
         <header id="header">
@@ -75,7 +73,7 @@
                     <div class="row">
                         <div class="entry-content">
                             <p><span class="start-text"><b>WHERE</b></span></p>
-                            <h4 class="entry-title"><a href="#">Organizing World class events</a></h4>
+                            <h4 class="entry-title"><a href="index.php">Organizing World class events</a></h4>
                             <h5><span><b>IS MADE SIMPLE</b></span></h5>
                         </div>
                     </div>
@@ -115,9 +113,14 @@
             <div class="col-md-8 col-md-offset-2">
                 
 
-                <p>Nullam enim nunc, sollicitudin eget rhoncus non, iaculis quis metus. Nunc urna diam, blandit nec ipsum eu, mollis convallis lectus. Vestibulum sapien mauris, auctor quis magna sed, pretium vestibulum est. Mauris vitae tristique urna. Nullam enim nunc, sollicitudin eget rhoncus non, iaculis quis metus. Nunc urna diam, blandit nec ipsum eu, mollis convallis lectus.
+                <p>Our main activities are:
+Fairs Constructions: setting up exhibition stands and constructions for fair events, congresses, sociable and other events in Slovenia and abroad, and a full technical service;
+Events Equipment Rental: rental of equipment for fairs, congresses, conferences, concerts, seminars, competitions, New Years Eve parties etc.;
+Events and Fairs Organization: organization of prior events, foramtion, counselling, preparations and realization of public and custom private events.
+The company employs 25 people, experts in various fields. 
 
-                Vestibulum sapien mauris, auctor quis magna sed, pretium vestibulum est. Mauris vitae tristique urna.</p>
+Company's Mission
+Our mission interests people at large. That is why we want to prepare events, which will bring them a new set of ideas on how to spend their time in quality. We give them educational, cultural, healthy and quality information. By this we also enlarge the slovenian and european economy, education, culture etc.</p>
             </div>
             <div class="col-md-4">
                 <br/>
@@ -145,26 +148,33 @@
                             </div>
                             <div class="timeline-panel">
                                 <div class="timeline-heading">
-                                    <h4>Event One</h4>
+                                    <?php
+                                    include('connect.php');
+                                    $read_query =   "SELECT * FROM events WHERE date_deleted IS NULL AND event_id = 1";
+                                    $read_result = mysqli_query($conn, $read_query);
+                                        if (mysqli_num_rows($read_result) > 0) {
+                                            while($row = mysqli_fetch_assoc($read_result)){
+                                    ?>
+                                    <h4><?php echo $row['event_name']; ?></h4>
                                 </div>
                                 <div class="timeline-body">
-                                    <p class="timeline-desc col-md-6">Invitamus me testatur sed quod non dum animae tuae lacrimis ut libertatem deum rogus aegritudinis causet. Dicens hoc contra serpentibus isto.</p>
+                                    <p class="timeline-desc col-md-6"><?php echo $row['text']; ?></p>
                                     <p class="timeline-other col-md-6">
                                         
                                         <em class="timeline-item">
-                                         Venue : Adeleade
+                                         Venue: <?php echo $row['venue']; ?>
                                         </em> 
                                         <em class="timeline-item">
-                                        Seats : 25
+                                        Seats : <?php echo $row['seats']; ?>
                                         </em>
                                         <em class="timeline-item">
-                                        Ticket: $35 
+                                        Ticket: <?php echo $row['ticket_price']; ?> 
                                         </em>
                                         <em class="timeline-item">
-                                        Date : Feb-21-2014
+                                        Date : <?php echo $row['event_date']; ?>
                                         </em>
                                         <em class="timeline-item">
-                                        Duration : 5days
+                                        Duration : <?php echo $row['duration'];}} ?>
                                         </em>
 
                                     </p>
@@ -180,26 +190,33 @@
                             </div>
                             <div class="timeline-panel">
                                 <div class="timeline-heading">
-                                    <h4>Event Two</h4>
+                                    <?php
+                                    include('connect.php');
+                                    $read_query =   "SELECT * FROM events WHERE date_deleted IS NULL AND event_id = 2";
+                                    $read_result = mysqli_query($conn, $read_query);
+                                        if (mysqli_num_rows($read_result) > 0) {
+                                            while($row = mysqli_fetch_assoc($read_result)){
+                                    ?>
+                                    <h4><?php echo $row['event_name']; ?></h4>
                                 </div>
                                 <div class="timeline-body">
-                                    <p class="timeline-desc col-md-6">Invitamus me testatur sed quod non dum animae tuae lacrimis ut libertatem deum rogus aegritudinis causet. Dicens hoc contra serpentibus isto.</p>
+                                    <p class="timeline-desc col-md-6"><?php echo $row['text']; ?></p>
                                     <p class="timeline-other col-md-6">
                                         
                                         <em class="timeline-item">
-                                         Venue : Adeleade
+                                         Venue : <?php echo $row['venue']; ?>
                                         </em> 
                                         <em class="timeline-item">
-                                        Seats : 25
+                                        Seats : <?php echo $row['seats']; ?>
                                         </em>
                                         <em class="timeline-item">
-                                        Ticket: $35 
+                                        Ticket: <?php echo $row['ticket_price']; ?>
                                         </em>
                                         <em class="timeline-item">
-                                        Date : Feb-21-2014
+                                        Date : <?php echo $row['event_date']; ?>
                                         </em>
                                         <em class="timeline-item">
-                                        Duration : 5days
+                                        Duration : <?php echo $row['duration'];}} ?>
                                         </em>
 
                                     </p>
@@ -215,26 +232,33 @@
                             </div>
                             <div class="timeline-panel">
                                 <div class="timeline-heading">
-                                    <h4>Event Three</h4>
+                                    <?php
+                                    include('connect.php');
+                                    $read_query =   "SELECT * FROM events WHERE date_deleted IS NULL AND event_id = 3";
+                                    $read_result = mysqli_query($conn, $read_query);
+                                        if (mysqli_num_rows($read_result) > 0) {
+                                            while($row = mysqli_fetch_assoc($read_result)){
+                                    ?>
+                                    <h4><?php echo $row['event_name']; ?></h4>
                                 </div>
                                 <div class="timeline-body">
-                                    <p class="timeline-desc col-md-6">Invitamus me testatur sed quod non dum animae tuae lacrimis ut libertatem deum rogus aegritudinis causet. Dicens hoc contra serpentibus isto.</p>
+                                    <p class="timeline-desc col-md-6"><?php echo $row['text']; ?></p>
                                     <p class="timeline-other col-md-6">
                                         
                                         <em class="timeline-item">
-                                         Venue : Adeleade
+                                         Venue : <?php echo $row['venue']; ?>
                                         </em> 
                                         <em class="timeline-item">
-                                        Seats : 25
+                                        Seats : <?php echo $row['seats']; ?>
                                         </em>
                                         <em class="timeline-item">
-                                        Ticket: $35 
+                                        Ticket: <?php echo $row['ticket_price']; ?>
                                         </em>
                                         <em class="timeline-item">
-                                        Date : Feb-21-2014
+                                        Date : F<?php echo $row['event_date']; ?>
                                         </em>
                                         <em class="timeline-item">
-                                        Duration : 5days
+                                        Duration : <?php echo $row['duration'];}} ?>
                                         </em>
 
                                     </p>
@@ -249,26 +273,33 @@
                             </div>
                             <div class="timeline-panel">
                                 <div class="timeline-heading">
-                                    <h4>Event Four</h4>
+                                    <?php
+                                    include('connect.php');
+                                    $read_query =   "SELECT * FROM events WHERE date_deleted IS NULL AND event_id = 4";
+                                    $read_result = mysqli_query($conn, $read_query);
+                                        if (mysqli_num_rows($read_result) > 0) {
+                                            while($row = mysqli_fetch_assoc($read_result)){
+                                    ?>
+                                    <h4><?php echo $row['event_name']; ?></h4>
                                 </div>
                                 <div class="timeline-body">
-                                    <p class="timeline-desc col-md-6">Invitamus me testatur sed quod non dum animae tuae lacrimis ut libertatem deum rogus aegritudinis causet. Dicens hoc contra serpentibus isto.</p>
+                                    <p class="timeline-desc col-md-6"><?php echo $row['text']; ?></p>
                                     <p class="timeline-other col-md-6">
                                         
                                         <em class="timeline-item">
-                                         Venue : Adeleade
+                                         Venue : <?php echo $row['venue']; ?>
                                         </em> 
                                         <em class="timeline-item">
-                                        Seats : 25
+                                        Seats : <?php echo $row['seats']; ?>
                                         </em>
                                         <em class="timeline-item">
-                                        Ticket: $35 
+                                        Ticket: <?php echo $row['ticket_price']; ?>
                                         </em>
                                         <em class="timeline-item">
-                                        Date : Feb-21-2014
+                                        Date : <?php echo $row['event_date']; ?>
                                         </em>
                                         <em class="timeline-item">
-                                        Duration : 5days
+                                        Duration : <?php echo $row['duration'];}} ?>
                                         </em>
 
                                     </p>
@@ -284,26 +315,33 @@
                             </div>
                             <div class="timeline-panel">
                                 <div class="timeline-heading">
-                                    <h4>Event Five</h4>
+                                  <?php
+                                    include('connect.php');
+                                    $read_query =   "SELECT * FROM events WHERE date_deleted IS NULL AND event_id = 5";
+                                    $read_result = mysqli_query($conn, $read_query);
+                                        if (mysqli_num_rows($read_result) > 0) {
+                                            while($row = mysqli_fetch_assoc($read_result)){
+                                    ?>
+                                    <h4><?php echo $row['event_name']; ?></h4>
                                 </div>
                                 <div class="timeline-body">
-                                    <p class="timeline-desc col-md-6">Invitamus me testatur sed quod non dum animae tuae lacrimis ut libertatem deum rogus aegritudinis causet. Dicens hoc contra serpentibus isto.</p>
+                                    <p class="timeline-desc col-md-6"><?php echo $row['text']; ?></p>
                                     <p class="timeline-other col-md-6">
                                         
                                         <em class="timeline-item">
-                                         Venue : Adeleade
+                                         Venue : <?php echo $row['venue']; ?>
                                         </em> 
                                         <em class="timeline-item">
-                                        Seats : 25
+                                        Seats : <?php echo $row['seats']; ?>
                                         </em>
                                         <em class="timeline-item">
-                                        Ticket: $35 
+                                        Ticket: <?php echo $row['ticket_price']; ?>
                                         </em>
                                         <em class="timeline-item">
-                                        Date : Feb-21-2014
+                                        Date : <?php echo $row['event_date']; ?>
                                         </em>
                                         <em class="timeline-item">
-                                        Duration : 5days
+                                        Duration : <?php echo $row['duration'];}} ?>
                                         </em>
 
                                     </p>
@@ -319,26 +357,33 @@
                             </div>
                             <div class="timeline-panel">
                                 <div class="timeline-heading">
-                                    <h4>Event Six</h4>
+                                  <?php
+                                    include('connect.php');
+                                    $read_query =   "SELECT * FROM events WHERE date_deleted IS NULL AND event_id = 6";
+                                    $read_result = mysqli_query($conn, $read_query);
+                                        if (mysqli_num_rows($read_result) > 0 ){
+                                            while($row = mysqli_fetch_assoc($read_result)){
+                                    ?>
+                                    <h4><?php echo $row['event_name']; ?></h4>
                                 </div>
                                 <div class="timeline-body">
-                                    <p class="timeline-desc col-md-6">Invitamus me testatur sed quod non dum animae tuae lacrimis ut libertatem deum rogus aegritudinis causet. Dicens hoc contra serpentibus isto.</p>
+                                    <p class="timeline-desc col-md-6"><?php echo $row['text']; ?></p>
                                     <p class="timeline-other col-md-6">
                                         
                                         <em class="timeline-item">
-                                         Venue : Adeleade
+                                         Venue : <?php echo $row['venue']; ?>
                                         </em> 
                                         <em class="timeline-item">
-                                        Seats : 25
+                                        Seats : <?php echo $row['seats']; ?>
                                         </em>
                                         <em class="timeline-item">
-                                        Ticket: $35 
+                                        Ticket: <?php echo $row['ticket_price']; ?> 
                                         </em>
                                         <em class="timeline-item">
-                                        Date : Feb-21-2014
+                                        Date : <?php echo $row['event_date']; ?>
                                         </em>
                                         <em class="timeline-item">
-                                        Duration : 5days
+                                        Duration : <?php echo $row['duration'];}} ?>
                                         </em>
 
                                     </p>
@@ -353,46 +398,70 @@
                 </section>
 
 
-
                 <!--===============================-->
                 <!--== Blog =============-->
                 <!--===============================-->
             <section id="blog" class="row">
                 <div class="title-start col-md-4 col-md-offset-4"><h2>Blog</h2> 
-                <p class="sub-text text-center">Awesome news and articles from us</p>   
+                <p class="sub-text text-center"><?php 
+                    $conn = mysqli_connect('localhost', 'root', '', 'articles');
+                    $txt = "You can read more about some interesting events in Berlin, Germany
+                    <i>With the 'read more', goes to the full article page in English</i>:";
+                    echo "<h4>" . $txt . "</h4>";
+                    $makefoo = true;
+bar();
+if ($makefoo) {
+  function foo()
+  {
+    echo "We don't exist until you find us.\n";
+  }
+}
+if ($makefoo) foo();
+
+function bar() 
+{
+  echo "Eventer exists if you work with us!\n";
+}?></p>   
                 </div>
                     <div class="top">
                     </div>
                     <div class="content">
                       
                       <div class="blog col-md-4">
-                        <h2 class="blog-head">Evento at HW</h2>
-                        <h3>
-                        Posted by <a href="#">Shuvo</a><span class="date-line"> on April 1st</span>
-                        </h3>
-                        <img class="blog-image" src="images/demo/blog2.jpg" width="100%" height="250" alt="Blog Image 2"/>
-                        
-                        <p class="firstpara"><span class="firstcharacter">P</span>ellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p> 
-
-                        <button class="button-info read-more">Read More</button>
-                         
-                      </div>
-                    
-                      <div class="blog col-md-4">
-                        <h2 class="blog-head">Evento at NY</h2>
-                        <h3>Posted by <a href="#">Shuvo</a><span class="date-line"> on April 30th</span></h3>
-                        <img class="blog-image" src="images/demo/blog1.jpg"  width="100%" height="250" alt="Blog Image 2"/>
-                        <p class="firstpara"><span class="firstcharacter">G</span>et out of here!" bellowed a brawny man with a beard as long as Charlie's arm. "Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante."Pellentesque habitant morbi tristique." said Charlie.Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
-                        <button class="button-info read-more">Read More</button>
-                      </div>
-                      <div class="blog col-md-4">
-                        <h2 class="blog-head">US Feast</h2>
-
-                        <h3>Posted by <a href="#">Shuvo</a><span class="date-line"> on April 1st</span></h3>
-                        <img class="blog-image" src="images/demo/blog2.jpg" width="100%" height="250" alt="Blog Image 2"/>
-                        <p class="firstpara"><span class="firstcharacter">P</span>ellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
-                        <button class="button-info read-more">Read More</button>
-                      </div>
+                        <?php 
+    $q = "SELECT * FROM `article` ORDER BY `id` DESC LIMIT 5";
+    $res = mysqli_query($conn, $q);
+    $n = 0;
+    $article = array(array());
+    if (mysqli_num_rows($res)>0) {
+        while ($row = mysqli_fetch_assoc($res)) {
+            foreach ($row as $key => $value) {
+                $article[$n][$key] = $value;
+                if (isset($article[$n]['text'])) {
+                    $description = $article[$i]['text'];
+                    $article[$n]['min'] = substr($description, 0, 200);
+                }
+            }
+            $n++;
+        }
+    }
+    
+    for ($l=0; $l < 5 ; $l++) { 
+        echo " </p>";
+        echo $article[$l]['article_name']."<br/>";
+        echo $article[$l]['date_published']."<br/>";
+        $id = $article[$l]['id'];
+        echo "<a href='https://www.berlin.de/en/events/april/'>full list with news in Berlin</a><br/>";
+        echo " </p>";
+    }
+function makeevent($types = array("Berlin"), $eventMaker = NULL)
+{
+    $device = is_null($eventMaker) ? "us" : $eventMaker;
+    return "Make a nice event in ".join(", ", $types)." with $device.\n";
+}
+echo makeevent();
+echo makeevent(array("Berlin", "Germany"), "Eventer");
+?>
                     </div>
                 </section>
                 <!--==========-->
@@ -411,7 +480,7 @@
                         <div class="pricing-table">
                             <div class="plan">
                                 <h3 class="name">Silver</h3>
-                                <h4 class="price">$10,000<span>/Day</span></h4>
+                                <h4 class="price">€10,000<span>/Day</span></h4>
 
                                 <ul class="details">
                                     <li><strong>100</strong> Seats</li>
@@ -424,7 +493,7 @@
 
                             <div class="plan">
                                 <h3 class="name">Gold</h3>
-                                <h4 class="price">$20,000<span>/Day</span></h4>
+                                <h4 class="price">€20,000<span>/Day</span></h4>
 
                                 <ul class="details">
                                     <li><strong>300</strong> Seats</li>
@@ -432,13 +501,13 @@
                                     <li><strong>A host is provided.<br>(You can go with your own, if you so desire.)</strong></li><br>
                                 </ul>
 
-                                <button class="orderg" data-toggle="modal" data-target="#Modal-Form2">Order Now</button>
+                                <button class="orderg" data-toggle="modal" data-target="#Modal-Form1">Order Now</button>
 
                             </div><!--.plan-->
 
                             <div class="plan">
                                 <h3 class="name">Platinum</h3>
-                                <h4 class="price">$30,000<span>/Day</span></h4>
+                                <h4 class="price">€30,000<span>/Day</span></h4>
 
                                 <ul class="details">
                                     <li><strong>500</strong> Seats</li>
@@ -446,7 +515,7 @@
                                     <li><strong>Up to two hosts are provided.<br>(You can go with your own, if you so desire.)</strong></li><br>
                                 </ul>
 
-                                <button class="order" data-toggle="modal" data-target="#Modal-Form3">Order Now</button>
+                                <button class="order" data-toggle="modal" data-target="#Modal-Form1">Order Now</button>
                             </div><!--.plan-->
                         </div><!--.pricing-table-->
                     </div><!--.wrap-->
@@ -463,18 +532,16 @@
          <!-- Contact Area -->
 
         <section id="contact" class="mapWrap">
-            <div id="googleMap" style="width:100%;"></div>
             <div id="contact-area">
                 <div class="container">
-                    <h2 class="block_title">Hey !!!</h2>
                     <div class="row">
                         <div class="col-xs-12">
                         </div>
                         <div class="col-sm-6">
                             <div class="moreDetails">
-                                <h2 class="con-title">More About me</h2>
-                                <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum animi repudiandae nihil aspernatur repellat temporibus doloremque sint ea laboriosam, excepturi iure inventore rerum voluptatibus, suscipit totam, sit necessitatibus. Rerum, blanditiis. </p>
+                
                                 <ul class="address">
+                                    <h2 style="color: white;"> You can find us at </h2>
                                     <li><i class="pe-7s-map-marker"></i><span>1600 Pennsylvania Ave NW,<br>Washington, DC 20500,<br>United States</span></li>
                                     <li><i class="pe-7s-mail"></i><span>example@gmail.com</span></li>
                                     <li><i class="pe-7s-phone"></i><span>+1-202-555-0144</span></li>
@@ -483,7 +550,25 @@
                             </div>
                         </div>
                         <div class="col-sm-6">
-                            <h2 class="con-title">Contact us</h2>
+                            <h5 class="con-title">Have a question? Use the form below</h5>
+<?php 
+if(isset($_POST['submit'])){
+    $to = "scorpioo@abv.bg"; // this is your Email address
+    $from = $_POST['email']; // this is the sender's Email address
+    $name = $_POST['name'];
+    $subject = "Form submission";
+    $subject2 = "Copy of your form submission";
+    $message = $name . " wrote the following:" . "\n\n" . $_POST['message'];
+    $message2 = "Here is a copy of your message " . $name . "\n\n" . $_POST['message'];
+
+    $headers = "From:" . $from;
+    $headers2 = "From:" . $to;
+    mail($to,$subject,$message,$headers);
+    mail($from,$subject2,$message2,$headers2); // sends a copy of the message to the sender
+    echo "Mail Sent. Thank you " . $name . ", we will contact you shortly.";
+    // You can also use header('Location: thank_you.php'); to redirect to another page.
+    }
+?>
 
 
     <form class="well form-horizontal" action=" " method="post"  id="contact_form">
@@ -492,7 +577,7 @@
   <div class="col-md-12 inputGroupContainer">
   <div class="input-group">
   <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-  <input  name="first_name" placeholder="Your Name" class="form-control"  type="text">
+  <input  name="name" placeholder="Your Name" class="form-control"  type="text">
     </div>
   </div>
 </div>
@@ -515,7 +600,7 @@
     <div class="col-md-12 inputGroupContainer">
     <div class="input-group">
         <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
-          <textarea class="form-control" name="comment" placeholder="Your Message"></textarea>
+          <textarea class="form-control" name="message" placeholder="Your Message"></textarea>
   </div>
   </div>
 </div>
@@ -562,10 +647,10 @@
             <div class="container">
                 <div class="row">
                     <div class="col-sm-6">
-                        <p class="copyright">© Copyright 2014 <a href="http://wwww.technextit.com" target="_blank">Technext</a></p>
+                        <p class="copyright">© Copyright 2016 <a href="http://wwww.eventer.com" target="_blank">Technext</a></p>
                     </div>
                     <div class="col-sm-6">
-                        <p class="designed">Designed and Developed by <a href="http://themewagon.com" target="_blank">Themewagon</a></p>
+                        <p class="designed">Designed by <a href="http://themewagon.com" target="_blank">Themewagon</a></p>
                     </div>
                 </div>
             </div>
@@ -582,38 +667,60 @@
                        <span class="sr-only">Close</span>
                 </button>
                 <h4 class="modal-title" id="myModalLabel">
-                    Silver
+                    Please, enter the required information
                 </h4>
             </div>
             
             <!-- Modal Body -->
             <div class="modal-body">
-                
-                <form role="form">
+                <?php
+                $conn = mysqli_connect('localhost', 'root', '', 'orderss');
+                $sql = "SELECT * FROM order_types WHERE date_deleted IS NULL";
+                $result = mysqli_query($conn, $sql);
+                if(empty($_POST['submit'])){
+                ?>
+                <form role="form" action="index.php" method="POST">
                   <div class="form-group">
-                      <input type="text" class="form-control"
+                      <input name="name" type="text" class="form-control"
                       id="exampleInputEmail1" placeholder="Your Name"/>
                   </div>
                   <div class="form-group">
-                      <input type="text" class="form-control"
+                      <input name="company" type="text" class="form-control"
                           id="exampleInputPassword1" placeholder="Your Company"/>
                   </div>
-                  <div class="checkbox">
-                  </div>
+
                   <div class="form-group">
-                      <input type="email" class="form-control"
+                      <input name="email" type="email" class="form-control"
                           id="exampleInputPassword1" placeholder="Your E-mail"/>
                   </div>
+                   <div class="form-group">
+                    <select name="order_type" class="form-control">
+                        <?php
+                        if (mysqli_num_rows($result) > 0) {
+                            while($row = mysqli_fetch_assoc($result)){ 
+                        ?>
+                        <option style="color: #000" value="<?php echo $row['order_type']?>"> <?php echo $row['order_type']?> </option>
+                        <?php }} ?>
+                    </select>
 
-                  <button style="position: relative; left: 45%;" type="submit" class="btn btn-default">Submit</button>
+                  <input style="position: relative; width: 17.5%" type="submit" name="submit" class="btn btn-info">
                 </form>
-                
+                <?php }
+                else{
+                    $name = $_POST['name'];
+                    $company = $_POST['company'];
+                    $email = $_POST['email'];
+                    $order_type = $_POST['order_type'];
+                    $insert_query =     "INSERT INTO orders (name, company, email, order_type) 
+                                        VALUES ('$name', '$company', '$email', '$order_type')";
+                    $insert_result= mysqli_query($conn, $insert_query);}
+                ?>
                 
             </div>
         </div>
     </div>
 </div>
-<div class="modal fade" id="Modal-Form2" tabindex="-1" role="dialog" 
+        <div class="modal fade" id="Modal-Form2" tabindex="-1" role="dialog" 
      aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -624,33 +731,56 @@
                        <span aria-hidden="true">&times;</span>
                        <span class="sr-only">Close</span>
                 </button>
-                <h4 class="modal-title" id="myModalLabel">
-                    Gold
+                <h4 class="modal-title" id="myModalLabel2">
+                    Gold Pack
                 </h4>
             </div>
             
             <!-- Modal Body -->
             <div class="modal-body">
-                
-                <form role="form">
+                <?php
+                $conn = mysqli_connect('localhost', 'root', '', 'orderss');
+                $sql = "SELECT * FROM order_types WHERE date_deleted IS NULL";
+                $result = mysqli_query($conn, $sql);
+                if(empty($_POST['submit'])){
+                ?>
+                <form role="form" action="index.php" method="POST">
                   <div class="form-group">
-                      <input type="text" class="form-control"
-                      id="exampleInputEmail1" placeholder="Your Name"/>
+                      <input name="name" type="text" class="form-control"
+                      id="exampleInputEmail2" placeholder="Your Name"/>
                   </div>
                   <div class="form-group">
-                      <input type="text" class="form-control"
-                          id="exampleInputPassword1" placeholder="Your Company"/>
-                  </div>
-                  <div class="checkbox">
-                  </div>
-                  <div class="form-group">
-                      <input type="email" class="form-control"
-                          id="exampleInputPassword1" placeholder="Your E-mail"/>
+                      <input name="company" type="text" class="form-control"
+                          id="exampleInputPassword2" placeholder="Your Company"/>
                   </div>
 
-                  <button style="position: relative; left: 45%;" type="submit" class="btn btn-default">Submit</button>
+                  <div class="form-group">
+                      <input name="email" type="email" class="form-control"
+                          id="exampleInputPassword2" placeholder="Your E-mail"/>
+                  </div>
+                   <div class="form-group">
+                    <select name="order_type" class="form-control">
+                        <?php
+                        if (mysqli_num_rows($result) > 0) {
+                            while($row = mysqli_fetch_assoc($result)){ 
+                        ?>
+                        <option style="color: #000" value="<?php echo $row['order_type']?>"> <?php echo $row['order_type']?> </option>
+                        <?php }} ?>
+                    </select>
+
+                  <input style="position: relative; left: 40%; width: 17.5%" type="submit" name="submit" class="btn btn-info">
                 </form>
-                
+                <?php }
+                else{
+                    $name = $_POST['name'];
+                    $company = $_POST['company'];
+                    $email = $_POST['email'];
+                    $order_type = $_POST['order_type'];
+                    $insert_query =     "INSERT INTO orders (name, company, email, order_type) 
+                                        VALUES ('$name', '$company', '$email', '$order_type')";
+                    echo $insert_query;
+                    $insert_result= mysqli_query($conn, $insert_query);}
+                ?>
                 
             </div>
         </div>
@@ -684,14 +814,23 @@
                       <input type="text" class="form-control"
                           id="exampleInputPassword1" placeholder="Your Company"/>
                   </div>
-                  <div class="checkbox">
-                  </div>
                   <div class="form-group">
                       <input type="email" class="form-control"
                           id="exampleInputPassword1" placeholder="Your E-mail"/>
                   </div>
-
-                  <button style="position: relative; left: 45%;" type="submit" class="btn btn-default">Submit</button>
+                   <div class="[ form-group ]">
+                        <input type="checkbox" name="fancy-checkbox-info" id="fancy-checkbox-info3" autocomplete="off" />
+                        <div class="[ btn-group ]">
+                            <label for="fancy-checkbox-info" class="[ btn btn-info ]">
+                            <span class="[ glyphicon glyphicon-ok ]"></span>
+                                <span> </span>
+                             </label>
+                                <label for="fancy-checkbox-info" class="[ btn btn-default active ]">
+                                    +$1000 for a host?
+                                </label>
+                        </div>
+                    </div>
+                  <button style="position: relative; left: 45%;" type="submit" class="btn btn-info">Submit</button>
                 </form>
                 
                 
